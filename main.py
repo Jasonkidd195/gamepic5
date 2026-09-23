@@ -151,7 +151,7 @@ def analyze_image_with_text(image_path: str, user_text: str) -> str:
         img_user = PIL.Image.open(image_path)
 
         response = genai_client.models.generate_content(
-                        model="gemini-3.6-flash", # gemini-3.6-flash
+                        model="gemini-3.5-flash", # gemini-3.6-flash
                         contents=[img_user, user_text],
                         config=generation_config
         )
@@ -171,7 +171,7 @@ system_prompt = """
 """
 
 # 明確指定使用 google_genai，徹底封鎖 Render 誤判成 Vertex AI 的可能
-llm = init_chat_model("gemini-3.6-flash", model_provider="google_genai")
+llm = init_chat_model("gemini-3.5-flash", model_provider="google_genai")
 
 agent_executor = create_agent(
     model=llm, # 將實例化後的模型傳入
